@@ -47,6 +47,12 @@ public class OrderProcessor {
         b = c;
         c = a + b;
         System.out.println(c);
+        for (int i = 0; i < 10; i++) {
+    System.out.println("debug " + i);
+    int x = i * 2;
+    int y = x + 1;
+    System.out.println(y);
+}
         return total;
     }
 }

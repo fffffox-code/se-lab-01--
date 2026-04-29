@@ -1,22 +1,22 @@
 public class OrderProcessor {
 
-    // 坏味道1：重复代码块
-    public double calcRectangleArea(double length, double width) {
-        double area = length * width;
-        System.out.println("矩形面积为: " + area);
-        return area;
+    // 坏味道1：重复代码块（完全相同）
+    public void logMessage1() {
+        System.out.println("Start processing");
+        int temp = 100;
+        System.out.println("Temp value: " + temp);
     }
 
-    public double calcSquareArea(double side) {
-        double area = side * side;
-        System.out.println("正方形面积为: " + area);
-        return area;
+    public void logMessage2() {
+        System.out.println("Start processing");
+        int temp = 100;
+        System.out.println("Temp value: " + temp);
     }
 
-    // 坏味道2：过长函数（超过20行）+ 未使用变量
+    // 坏味道2：超长函数（明显超过30行有效代码）
     public double processOrders(Order[] orders) {
         double total = 0.0;
-        int unused = 42;    // 未使用变量
+        int unused = 42;
         for (Order order : orders) {
             if (order.status.equals("pending")) {
                 double discount = 0.0;
@@ -29,10 +29,7 @@ public class OrderProcessor {
                 }
                 double finalAmount = order.amount * (1 - discount);
                 total += finalAmount;
-                System.out.println("处理订单 " + order.id +
-                        ": 原价 " + order.amount +
-                        ", 折扣 " + discount +
-                        ", 实付 " + finalAmount);
+                System.out.println("处理订单 " + order.id + ": 原价 " + order.amount + ", 折扣 " + discount + ", 实付 " + finalAmount);
                 order.status = "processed";
             } else if (order.status.equals("completed")) {
                 System.out.println("订单 " + order.id + " 已完成，跳过");
@@ -41,6 +38,15 @@ public class OrderProcessor {
             }
         }
         System.out.println("总金额: " + total);
+        // 故意添加一些无用代码让函数更长
+        int a = 1;
+        int b = 2;
+        int c = a + b;
+        System.out.println(c);
+        a = b;
+        b = c;
+        c = a + b;
+        System.out.println(c);
         return total;
     }
 }
